@@ -21,6 +21,19 @@ def test_manifest_declares_config_flow_and_homekit_dependency() -> None:
     assert manifest["config_flow"] is True
     assert "homekit" in manifest["dependencies"]
     assert "replaces" not in manifest
+    assert manifest["issue_tracker"].endswith("/HomeKit_Bridge/issues")
+    assert list(manifest) == [
+        "domain",
+        "name",
+        "codeowners",
+        "config_flow",
+        "dependencies",
+        "documentation",
+        "integration_type",
+        "iot_class",
+        "issue_tracker",
+        "version",
+    ]
 
 
 def test_release_documentation_matches_manifest_version() -> None:
@@ -38,6 +51,10 @@ def test_github_actions_are_present() -> None:
     workflows = ROOT / ".github" / "workflows"
 
     assert {path.name for path in workflows.iterdir()} == {"ci.yaml", "validate.yaml"}
+
+    validation = (workflows / "validate.yaml").read_text(encoding="utf-8")
+    assert "ignore: topics description brands" in validation
+    assert not list(ROOT.glob("custom_components/**/*.png"))
 
 
 def _keys(value: object, prefix: str = "") -> set[str]:

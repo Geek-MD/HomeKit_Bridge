@@ -1,7 +1,7 @@
 # HomeKit Child Bridge
 
-[![CI](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/ci.yaml/badge.svg)](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/ci.yaml)
-[![Validate](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/validate.yaml/badge.svg)](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/validate.yaml)
+[![CI](https://github.com/Geek-MD/HomeKit_Bridge/actions/workflows/ci.yaml/badge.svg)](https://github.com/Geek-MD/HomeKit_Bridge/actions/workflows/ci.yaml)
+[![Validate](https://github.com/Geek-MD/HomeKit_Bridge/actions/workflows/validate.yaml/badge.svg)](https://github.com/Geek-MD/HomeKit_Bridge/actions/workflows/validate.yaml)
 [![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
 
 A custom Home Assistant integration that publishes groups of entities as separate
