@@ -23,6 +23,16 @@ def test_manifest_declares_config_flow_and_homekit_dependency() -> None:
     assert manifest["replaces"] == ["homekit"]
 
 
+def test_release_documentation_matches_manifest_version() -> None:
+    """The README and changelog must describe the version shipped by the manifest."""
+    version = _json(INTEGRATION / "manifest.json")["version"]
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+
+    assert f"## Version {version}" in readme
+    assert f"## [{version}]" in changelog
+
+
 def _keys(value: object, prefix: str = "") -> set[str]:
     """Return every nested mapping key as a dotted path."""
     if not isinstance(value, dict):

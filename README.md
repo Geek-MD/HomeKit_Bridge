@@ -4,7 +4,17 @@ A custom Home Assistant integration that publishes groups of entities as separat
 Apple Home bridges. Each entry creates a native `homekit` entry, so Home Assistant
 provides an independent QR code and pairing code for every group.
 
-## Features
+## Version 0.1.0
+
+This README documents **HomeKit Child Bridge 0.1.0**, the first public release.
+
+### Requirements
+
+- Home Assistant 2025.1.0 or newer.
+- The built-in HomeKit integration.
+- An Apple Home hub is recommended for remote access and automations.
+
+### Features
 
 - Export all entities from a domain (`light`, `cover`, and so on).
 - Export the entities that belong to a configured integration.
@@ -19,30 +29,57 @@ The manifest declares that this integration replaces direct configuration of the
 base `homekit` integration. It still uses Home Assistant's native HAP implementation
 internally to retain compatibility with Home Assistant and Apple Home.
 
-See [CHANGELOG.md](CHANGELOG.md) for the history of each release.
+See the [0.1.0 changelog](CHANGELOG.md#010---2026-09-20) for the complete release
+notes.
 
-## Installation
+### Installation
+
+#### HACS
+
+1. Add this repository to HACS as a custom integration repository.
+2. Search for **HomeKit Child Bridge** and install version **0.1.0**.
+3. Restart Home Assistant.
+
+#### Manual installation
 
 1. Copy `custom_components/homekit_child_bridge` into Home Assistant's
    `custom_components` directory.
 2. Restart Home Assistant.
-3. Go to **Settings → Devices & services → Add integration** and search for
+
+### Configuration
+
+1. Go to **Settings → Devices & services → Add integration** and search for
    **HomeKit Child Bridge**.
-4. Choose whether to group entities by domain or integration, then select the
+2. Choose whether to group entities by domain or integration, then select the
    group to export.
-5. Open the new **HomeKit Bridge** entry created by Home Assistant and scan its QR
+3. Open the new **HomeKit Bridge** entry created by Home Assistant and scan its QR
    code.
 
 > Do not configure the same entities in multiple HomeKit bridges. Apple Home will
 > display them as duplicates.
 
-## Development
+### Supported languages
+
+Version 0.1.0 includes configuration UI translations for:
+
+- English
+- French
+- German
+- Italian
+- Portuguese
+- Spanish
+
+## Development for 0.1.0
 
 ```bash
 python -m pip install -e '.[test]'
 pytest
 ruff check .
 ```
+
+The integration version is defined in
+`custom_components/homekit_child_bridge/manifest.json`. Any behavior added after
+0.1.0 must be documented under **Unreleased** in `CHANGELOG.md`.
 
 ## License
 
