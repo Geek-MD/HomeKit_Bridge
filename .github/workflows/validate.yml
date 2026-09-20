@@ -1,0 +1,57 @@
+name: Validate
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests and lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -e ".[test]"
+
+      - name: Run Ruff
+        run: ruff check . && ruff format --check .
+
+      - name: Run tests
+        run: pytest -q
+
+  hassfest:
+    name: Home Assistant validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run hassfest
+        uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    name: HACS validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run HACS validation
+        uses: hacs/action@main
+        with:
+          category: integration
