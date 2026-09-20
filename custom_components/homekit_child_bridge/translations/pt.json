@@ -1,0 +1,26 @@
+{
+  "title": "Ponte secundária HomeKit",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Criar uma ponte secundária HomeKit",
+        "description": "Escolha como agrupar as entidades desta ponte independente.",
+        "data": {"group_type": "Agrupar entidades por"}
+      },
+      "source_type": {
+        "title": "Escolha o que exportar",
+        "description": "Uma ponte HomeKit e um código de emparelhamento separados serão criados para esta seleção.",
+        "data": {"source": "Domínio ou integração"}
+      }
+    },
+    "abort": {"already_configured": "Este grupo já possui uma ponte HomeKit."}
+  },
+  "selector": {
+    "group_type": {
+      "options": {
+        "domain": "Domínio (luzes, persianas etc.)",
+        "integration": "Integração configurada"
+      }
+    }
+  }
+}
