@@ -1,0 +1,26 @@
+{
+  "title": "HomeKit Child Bridge",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Create a HomeKit child bridge",
+        "description": "Choose how to group the entities for this independent bridge.",
+        "data": {"group_type": "Group entities by"}
+      },
+      "source_type": {
+        "title": "Choose what to export",
+        "description": "A separate HomeKit bridge and pairing code will be created for this selection.",
+        "data": {"source": "Domain or integration"}
+      }
+    },
+    "abort": {"already_configured": "This group already has a HomeKit bridge."}
+  },
+  "selector": {
+    "group_type": {
+      "options": {
+        "domain": "Domain (lights, covers, etc.)",
+        "integration": "Configured integration"
+      }
+    }
+  }
+}
