@@ -34,3 +34,6 @@ jobs:
         uses: hacs/action@main
         with:
           category: integration
+          # These checks depend on GitHub settings or binary assets maintained outside
+          # this source-only repository.
+          ignore: topics description brands

@@ -16,10 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - English, Spanish, German, Italian, French, and Portuguese configuration UI
   strings.
 - HACS installation metadata.
+- A manifest issue tracker for HACS validation.
+- Correct space-delimited HACS exclusions for GitHub-managed repository metadata
+  and external brand assets.
 - Battery Devices Monitor-style `ci.yaml` and `validate.yaml` GitHub Actions for
   tests, linting, Home Assistant validation, and HACS validation.
 - Management of grouped bridges in place of direct group configuration through
   the base `homekit` integration.
 - English base documentation for installation, configuration, and development.
 
-[0.1.0]: https://github.com/edisonmontes/HomeKit_Bridge/releases/tag/v0.1.0
+[0.1.0]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.1.0
