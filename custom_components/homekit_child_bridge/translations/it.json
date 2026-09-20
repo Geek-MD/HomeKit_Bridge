@@ -5,21 +5,41 @@
       "user": {
         "title": "Crea un bridge secondario HomeKit",
         "description": "Scegli come raggruppare le entità per questo bridge indipendente.",
-        "data": {"group_type": "Raggruppa entità per"}
+        "data": {
+          "group_type": "Raggruppa entità per"
+        }
       },
       "source_type": {
         "title": "Scegli cosa esportare",
         "description": "Verranno creati un bridge HomeKit separato e un codice di abbinamento per questa selezione.",
-        "data": {"source": "Dominio o integrazione"}
+        "data": {
+          "source": "Dominio o integrazione"
+        }
+      },
+      "reconfigure": {
+        "title": "Riconfigura un bridge HomeKit secondario",
+        "description": "Scegli come raggruppare nuovamente le entità per questo bridge.",
+        "data": {
+          "group_type": "Raggruppa entità per"
+        }
       }
     },
-    "abort": {"already_configured": "Questo gruppo dispone già di un bridge HomeKit."}
+    "abort": {
+      "already_configured": "Questo gruppo dispone già di un bridge HomeKit."
+    }
   },
   "selector": {
     "group_type": {
       "options": {
         "domain": "Dominio (luci, coperture e così via)",
         "integration": "Integrazione configurata"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "pairing_code": {
+        "name": "Codice di abbinamento"
       }
     }
   }

@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.0] - 2026-09-20
+
+### Added
+
+- Reconfiguration flows for changing the domain or integration exported by an
+  existing child bridge.
+- One pairing-code sensor per integration instance, backed by the same setup code
+  supplied to Home Assistant's native HomeKit bridge.
+- Automatic generation of valid, random HomeKit setup codes for both new and
+  upgraded entries.
+
+### Changed
+
+- Reconfiguring an instance now synchronizes and reloads its managed native
+  HomeKit entry while preserving its assigned port and entry identity.
+
+## [0.2.0] - 2026-09-20
+
+### Fixed
+
+- Include a unique port when importing each managed bridge into Home Assistant's
+  native HomeKit integration. This prevents setup from failing with
+  `KeyError: 'port'` on Home Assistant versions that require the port in import
+  data.
+
 ## [0.1.0] - 2026-09-20
 
 ### Added
@@ -27,3 +52,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - English base documentation for installation, configuration, and development.
 
 [0.1.0]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.1.0
+[0.2.0]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.2.0
+[0.3.0]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.3.0

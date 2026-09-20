@@ -5,21 +5,41 @@
       "user": {
         "title": "Créer un pont enfant HomeKit",
         "description": "Choisissez comment regrouper les entités de ce pont indépendant.",
-        "data": {"group_type": "Regrouper les entités par"}
+        "data": {
+          "group_type": "Regrouper les entités par"
+        }
       },
       "source_type": {
         "title": "Choisir les éléments à exporter",
         "description": "Un pont HomeKit et un code de jumelage distincts seront créés pour cette sélection.",
-        "data": {"source": "Domaine ou intégration"}
+        "data": {
+          "source": "Domaine ou intégration"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigurer un pont enfant HomeKit",
+        "description": "Choisissez comment regrouper les entités de ce pont.",
+        "data": {
+          "group_type": "Regrouper les entités par"
+        }
       }
     },
-    "abort": {"already_configured": "Ce groupe possède déjà un pont HomeKit."}
+    "abort": {
+      "already_configured": "Ce groupe possède déjà un pont HomeKit."
+    }
   },
   "selector": {
     "group_type": {
       "options": {
         "domain": "Domaine (lumières, volets, etc.)",
         "integration": "Intégration configurée"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "pairing_code": {
+        "name": "Code de jumelage"
       }
     }
   }

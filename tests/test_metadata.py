@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 
 ROOT = Path(__file__).parents[1]
@@ -44,6 +45,30 @@ def test_release_documentation_matches_manifest_version() -> None:
 
     assert f"## Version {version}" in readme
     assert f"## [{version}]" in changelog
+
+
+def test_homekit_port_allocator_skips_ports_in_use() -> None:
+    """Every managed bridge must receive a distinct native HomeKit port."""
+    spec = spec_from_file_location("homekit_child_bridge_const", INTEGRATION / "const.py")
+    assert spec is not None and spec.loader is not None
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    assert module.next_homekit_port(set()) == 21063
+    assert module.next_homekit_port({21063, 21064, 21066}) == 21065
+
+
+def test_generated_homekit_pairing_codes_are_valid() -> None:
+    """Generated codes must use HomeKit's format and exclude trivial values."""
+    spec = spec_from_file_location("homekit_child_bridge_const", INTEGRATION / "const.py")
+    assert spec is not None and spec.loader is not None
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    codes = {module.generate_pairing_code() for _ in range(20)}
+    assert all(len(code) == 10 and code[3] == code[6] == "-" for code in codes)
+    assert all(code.replace("-", "").isdigit() for code in codes)
+    assert codes.isdisjoint(module.INVALID_PAIRING_CODES)
 
 
 def test_github_actions_are_present() -> None:
