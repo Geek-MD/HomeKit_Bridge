@@ -5,21 +5,41 @@
       "user": {
         "title": "HomeKit-Kind-Bridge erstellen",
         "description": "Wähle aus, wie die Entitäten für diese unabhängige Bridge gruppiert werden sollen.",
-        "data": {"group_type": "Entitäten gruppieren nach"}
+        "data": {
+          "group_type": "Entitäten gruppieren nach"
+        }
       },
       "source_type": {
         "title": "Export auswählen",
         "description": "Für diese Auswahl werden eine separate HomeKit-Bridge und ein Kopplungscode erstellt.",
-        "data": {"source": "Domäne oder Integration"}
+        "data": {
+          "source": "Domäne oder Integration"
+        }
+      },
+      "reconfigure": {
+        "title": "HomeKit-Unterbridge neu konfigurieren",
+        "description": "Wähle aus, wie die Entitäten für diese Bridge neu gruppiert werden.",
+        "data": {
+          "group_type": "Entitäten gruppieren nach"
+        }
       }
     },
-    "abort": {"already_configured": "Diese Gruppe hat bereits eine HomeKit-Bridge."}
+    "abort": {
+      "already_configured": "Diese Gruppe hat bereits eine HomeKit-Bridge."
+    }
   },
   "selector": {
     "group_type": {
       "options": {
         "domain": "Domäne (Lichter, Abdeckungen usw.)",
         "integration": "Konfigurierte Integration"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "pairing_code": {
+        "name": "Kopplungscode"
       }
     }
   }

@@ -5,21 +5,41 @@
       "user": {
         "title": "Create a HomeKit child bridge",
         "description": "Choose how to group the entities for this independent bridge.",
-        "data": {"group_type": "Group entities by"}
+        "data": {
+          "group_type": "Group entities by"
+        }
       },
       "source_type": {
         "title": "Choose what to export",
         "description": "A separate HomeKit bridge and pairing code will be created for this selection.",
-        "data": {"source": "Domain or integration"}
+        "data": {
+          "source": "Domain or integration"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure a HomeKit child bridge",
+        "description": "Choose how to regroup the entities for this bridge.",
+        "data": {
+          "group_type": "Group entities by"
+        }
       }
     },
-    "abort": {"already_configured": "This group already has a HomeKit bridge."}
+    "abort": {
+      "already_configured": "This group already has a HomeKit bridge."
+    }
   },
   "selector": {
     "group_type": {
       "options": {
         "domain": "Domain (lights, covers, etc.)",
         "integration": "Configured integration"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "pairing_code": {
+        "name": "Pairing code"
       }
     }
   }

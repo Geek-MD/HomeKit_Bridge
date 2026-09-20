@@ -6,25 +6,43 @@ import logging
 from typing import Any
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_NAME
+from homeassistant.const import CONF_NAME, CONF_PIN_CODE, CONF_PORT, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry as er
 
 from .const import (
     CONF_CHILD_ENTRY_ID,
     CONF_GROUP_TYPE,
+    CONF_PAIRING_CODE,
     CONF_SOURCE,
     GROUP_DOMAIN,
     HOMEKIT_DOMAIN,
+    generate_pairing_code,
+    next_homekit_port,
 )
 
 _LOGGER = logging.getLogger(__name__)
+PLATFORMS = [Platform.SENSOR]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Ensure the native HomeKit child bridge exists."""
+    if CONF_PAIRING_CODE not in entry.data:
+        hass.config_entries.async_update_entry(
+            entry,
+            data={**entry.data, CONF_PAIRING_CODE: generate_pairing_code()},
+        )
+
     child_id = entry.data.get(CONF_CHILD_ENTRY_ID)
-    if child_id and hass.config_entries.async_get_entry(child_id):
+    if child_id and (child := hass.config_entries.async_get_entry(child_id)):
+        homekit_data = _homekit_config(hass, entry, child.data.get(CONF_PORT))
+        updated_child_data = {**child.data, **homekit_data}
+        if child.data != updated_child_data or child.title != entry.title:
+            hass.config_entries.async_update_entry(
+                child, data=updated_child_data, title=entry.title
+            )
+            await hass.config_entries.async_reload(child.entry_id)
+        await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
         return True
 
     homekit_data = _homekit_config(hass, entry)
@@ -42,12 +60,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         entry,
         data={**entry.data, CONF_CHILD_ENTRY_ID: child.entry_id},
     )
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     return True
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """The native HomeKit entry owns its own runtime lifecycle."""
-    return True
+    """Unload entities while the native HomeKit entry keeps running."""
+    return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
 
 
 async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
@@ -57,7 +76,9 @@ async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
             await hass.config_entries.async_remove(child_id)
 
 
-def _homekit_config(hass: HomeAssistant, entry: ConfigEntry) -> dict[str, Any]:
+def _homekit_config(
+    hass: HomeAssistant, entry: ConfigEntry, port: int | None = None
+) -> dict[str, Any]:
     """Translate a group entry into Home Assistant's native HomeKit filter."""
     source = entry.data[CONF_SOURCE]
     if entry.data[CONF_GROUP_TYPE] == GROUP_DOMAIN:
@@ -74,7 +95,19 @@ def _homekit_config(hass: HomeAssistant, entry: ConfigEntry) -> dict[str, Any]:
 
     return {
         CONF_NAME: entry.title,
+        CONF_PORT: port if isinstance(port, int) else _available_homekit_port(hass),
+        CONF_PIN_CODE: entry.data[CONF_PAIRING_CODE],
         "filter": entity_filter,
         "entity_config": {},
         "mode": "bridge",
     }
+
+
+def _available_homekit_port(hass: HomeAssistant) -> int:
+    """Choose a port that is not assigned to another native HomeKit entry."""
+    used_ports = {
+        port
+        for homekit_entry in hass.config_entries.async_entries(HOMEKIT_DOMAIN)
+        if isinstance((port := homekit_entry.data.get(CONF_PORT)), int)
+    }
+    return next_homekit_port(used_ports)

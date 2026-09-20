@@ -5,21 +5,41 @@
       "user": {
         "title": "Crear un puente hijo de HomeKit",
         "description": "Elige cómo agrupar las entidades de este puente independiente.",
-        "data": {"group_type": "Agrupar entidades por"}
+        "data": {
+          "group_type": "Agrupar entidades por"
+        }
       },
       "source_type": {
         "title": "Elige qué exportar",
         "description": "Se creará un puente HomeKit y un código de emparejamiento separado para esta selección.",
-        "data": {"source": "Dominio o integración"}
+        "data": {
+          "source": "Dominio o integración"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigurar un puente hijo de HomeKit",
+        "description": "Elige cómo reagrupar las entidades de este puente.",
+        "data": {
+          "group_type": "Agrupar entidades por"
+        }
       }
     },
-    "abort": {"already_configured": "Este grupo ya tiene un puente HomeKit."}
+    "abort": {
+      "already_configured": "Este grupo ya tiene un puente HomeKit."
+    }
   },
   "selector": {
     "group_type": {
       "options": {
         "domain": "Dominio (luces, persianas, etc.)",
         "integration": "Integración configurada"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "pairing_code": {
+        "name": "Código de emparejamiento"
       }
     }
   }

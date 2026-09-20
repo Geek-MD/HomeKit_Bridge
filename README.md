@@ -8,9 +8,11 @@ A custom Home Assistant integration that publishes groups of entities as separat
 Apple Home bridges. Each entry creates a native `homekit` entry, so Home Assistant
 provides an independent QR code and pairing code for every group.
 
-## Version 0.1.0
+## Version 0.3.0
 
-This README documents **HomeKit Child Bridge 0.1.0**, the first public release.
+This README documents **HomeKit Child Bridge 0.3.0**. Each configured instance
+can now be reconfigured and creates a sensor containing its Apple Home pairing
+code.
 
 ### Requirements
 
@@ -23,6 +25,9 @@ This README documents **HomeKit Child Bridge 0.1.0**, the first public release.
 - Export all entities from a domain (`light`, `cover`, and so on).
 - Export the entities that belong to a configured integration.
 - Create an independent HomeKit bridge for every selection.
+- Configure multiple instances, each with its own bridge, port, and pairing code.
+- Reconfigure an existing instance without replacing its managed bridge.
+- Read the Apple Home setup code from the instance's pairing-code sensor.
 - Automatically remove the managed bridge when its group is deleted.
 - Reuse Home Assistant's built-in HomeKit implementation instead of running an
   alternative HAP server.
@@ -34,7 +39,7 @@ This integration replaces the need to configure groups directly through the base
 integration uses Home Assistant's native HAP implementation internally to retain
 compatibility with Home Assistant and Apple Home.
 
-See the [0.1.0 changelog](CHANGELOG.md#010---2026-09-20) for the complete release
+See the [0.3.0 changelog](CHANGELOG.md#030---2026-09-20) for the complete release
 notes.
 
 ### Installation
@@ -42,7 +47,7 @@ notes.
 #### HACS
 
 1. Add this repository to HACS as a custom integration repository.
-2. Search for **HomeKit Child Bridge** and install version **0.1.0**.
+2. Search for **HomeKit Child Bridge** and install version **0.3.0**.
 3. Restart Home Assistant.
 
 #### Manual installation
@@ -60,12 +65,22 @@ notes.
 3. Open the new **HomeKit Bridge** entry created by Home Assistant and scan its QR
    code.
 
+Home Assistant's native HomeKit integration presents the QR code while an
+unpaired bridge is ready for pairing. The same numeric setup code remains
+available in the **Pairing code** sensor created under the HomeKit Child Bridge
+device.
+
+To change an instance later, open **Settings → Devices & services**, select its
+HomeKit Child Bridge entry, open the overflow menu, and choose **Reconfigure**.
+You can add further instances from **Add integration**; an exported group can only
+belong to one instance.
+
 > Do not configure the same entities in multiple HomeKit bridges. Apple Home will
 > display them as duplicates.
 
 ### Supported languages
 
-Version 0.1.0 includes configuration UI translations for:
+Version 0.3.0 includes configuration UI translations for:
 
 - English
 - French
@@ -74,7 +89,7 @@ Version 0.1.0 includes configuration UI translations for:
 - Portuguese
 - Spanish
 
-## Development for 0.1.0
+## Development for 0.3.0
 
 ```bash
 python -m pip install -e '.[test]'
@@ -84,7 +99,7 @@ ruff check .
 
 The integration version is defined in
 `custom_components/homekit_child_bridge/manifest.json`. Any behavior added after
-0.1.0 must be documented in the changelog for its corresponding release.
+0.3.0 must be documented in the changelog for its corresponding release.
 
 Pull requests and pushes are checked by the same `ci.yaml` and `validate.yaml`
 workflows used by Battery Devices Monitor. They run Ruff, pytest, hassfest, and
