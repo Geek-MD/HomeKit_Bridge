@@ -1,0 +1,26 @@
+{
+  "title": "HomeKit-Kind-Bridge",
+  "config": {
+    "step": {
+      "user": {
+        "title": "HomeKit-Kind-Bridge erstellen",
+        "description": "Wähle aus, wie die Entitäten für diese unabhängige Bridge gruppiert werden sollen.",
+        "data": {"group_type": "Entitäten gruppieren nach"}
+      },
+      "source_type": {
+        "title": "Export auswählen",
+        "description": "Für diese Auswahl werden eine separate HomeKit-Bridge und ein Kopplungscode erstellt.",
+        "data": {"source": "Domäne oder Integration"}
+      }
+    },
+    "abort": {"already_configured": "Diese Gruppe hat bereits eine HomeKit-Bridge."}
+  },
+  "selector": {
+    "group_type": {
+      "options": {
+        "domain": "Domäne (Lichter, Abdeckungen usw.)",
+        "integration": "Konfigurierte Integration"
+      }
+    }
+  }
+}

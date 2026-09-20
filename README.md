@@ -1,40 +1,42 @@
 # HomeKit Child Bridge
 
-Integración personalizada para Home Assistant que publica grupos de entidades como
-puentes independientes de Apple Home. Cada entrada crea una entrada nativa de
-`homekit`, por lo que Home Assistant muestra para ella su propio código QR y código
-de emparejamiento.
+A custom Home Assistant integration that publishes groups of entities as separate
+Apple Home bridges. Each entry creates a native `homekit` entry, so Home Assistant
+provides an independent QR code and pairing code for every group.
 
-## Funciones
+## Features
 
-- Exportación de todas las entidades de un dominio (`light`, `cover`, etc.).
-- Exportación de las entidades pertenecientes a una integración configurada.
-- Un puente HomeKit independiente por cada selección.
-- Eliminación automática del puente administrado cuando se elimina su grupo.
-- Sin servidor HAP alternativo: se reutiliza la integración HomeKit incluida en
-  Home Assistant.
+- Export all entities from a domain (`light`, `cover`, and so on).
+- Export the entities that belong to a configured integration.
+- Create an independent HomeKit bridge for every selection.
+- Automatically remove the managed bridge when its group is deleted.
+- Reuse Home Assistant's built-in HomeKit implementation instead of running an
+  alternative HAP server.
+- Configuration UI translations for English, Spanish, German, Italian, French,
+  and Portuguese.
 
-La integración declara en su manifiesto que reemplaza la configuración directa de
-la integración base `homekit`. Internamente continúa utilizando su implementación
-HAP nativa para conservar la compatibilidad con Home Assistant y Apple Home.
+The manifest declares that this integration replaces direct configuration of the
+base `homekit` integration. It still uses Home Assistant's native HAP implementation
+internally to retain compatibility with Home Assistant and Apple Home.
 
-Consulta [CHANGELOG.md](CHANGELOG.md) para conocer los cambios de cada versión.
+See [CHANGELOG.md](CHANGELOG.md) for the history of each release.
 
-## Instalación
+## Installation
 
-1. Copia `custom_components/homekit_child_bridge` a la carpeta
-   `custom_components` de Home Assistant.
-2. Reinicia Home Assistant.
-3. Ve a **Ajustes → Dispositivos y servicios → Añadir integración** y busca
+1. Copy `custom_components/homekit_child_bridge` into Home Assistant's
+   `custom_components` directory.
+2. Restart Home Assistant.
+3. Go to **Settings → Devices & services → Add integration** and search for
    **HomeKit Child Bridge**.
-4. Elige si deseas agrupar por dominio o por integración y selecciona el grupo.
-5. Abre la nueva entrada **HomeKit Bridge** creada por Home Assistant para ver y
-   escanear su código QR.
+4. Choose whether to group entities by domain or integration, then select the
+   group to export.
+5. Open the new **HomeKit Bridge** entry created by Home Assistant and scan its QR
+   code.
 
-> No configures las mismas entidades en varios puentes HomeKit: Apple Home las
-> mostrará duplicadas.
+> Do not configure the same entities in multiple HomeKit bridges. Apple Home will
+> display them as duplicates.
 
-## Desarrollo
+## Development
 
 ```bash
 python -m pip install -e '.[test]'
@@ -42,6 +44,6 @@ pytest
 ruff check .
 ```
 
-## Licencia
+## License
 
 MIT

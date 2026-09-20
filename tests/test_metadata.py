@@ -23,10 +23,21 @@ def test_manifest_declares_config_flow_and_homekit_dependency() -> None:
     assert manifest["replaces"] == ["homekit"]
 
 
-def test_spanish_translation_matches_base_flow() -> None:
-    """Every flow step and selector in the base strings has a translation."""
-    base = _json(INTEGRATION / "strings.json")
-    spanish = _json(INTEGRATION / "translations" / "es.json")
+def _keys(value: object, prefix: str = "") -> set[str]:
+    """Return every nested mapping key as a dotted path."""
+    if not isinstance(value, dict):
+        return set()
+    return {
+        path
+        for key, child in value.items()
+        for path in ({f"{prefix}{key}"} | _keys(child, f"{prefix}{key}."))
+    }
 
-    assert spanish["config"]["step"].keys() == base["config"]["step"].keys()
-    assert spanish["selector"].keys() == base["selector"].keys()
+
+def test_all_translations_match_base_strings() -> None:
+    """Every supported language must provide the complete base string structure."""
+    base = _json(INTEGRATION / "strings.json")
+
+    for language in ("de", "es", "fr", "it", "pt"):
+        translation = _json(INTEGRATION / "translations" / f"{language}.json")
+        assert _keys(translation) == _keys(base), language

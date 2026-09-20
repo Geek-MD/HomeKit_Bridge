@@ -1,26 +1,32 @@
 # Changelog
 
-Todos los cambios relevantes de este proyecto se documentarán en este archivo.
-El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
-y el proyecto utiliza [versionado semántico](https://semver.org/lang/es/).
+All notable changes to this project will be documented in this file.
 
-## [Sin publicar]
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
 
-### Añadido
+## [Unreleased]
 
-- Declaración explícita en el manifiesto de que esta integración reemplaza el flujo
-  de configuración de la integración base `homekit`.
+### Added
+
+- German, Italian, French, and Portuguese configuration UI translations.
+
+### Changed
+
+- The README and changelog now use English as the project's base language.
 
 ## [0.1.0] - 2026-09-20
 
-### Añadido
+### Added
 
-- Flujo de configuración para crear grupos por dominio o integración.
-- Creación de un puente HomeKit nativo independiente para cada grupo.
-- Código QR y emparejamiento independiente proporcionados por Home Assistant.
-- Eliminación del puente HomeKit administrado al borrar su grupo.
-- Traducciones en inglés y español.
-- Metadatos de instalación para HACS.
+- A configuration flow for creating groups by domain or integration.
+- A separate native HomeKit bridge for every group.
+- Independent QR codes and pairing provided by Home Assistant.
+- Automatic removal of a managed HomeKit bridge when its group is deleted.
+- English and Spanish configuration UI strings.
+- HACS installation metadata.
+- An explicit manifest declaration that this integration replaces direct
+  configuration of the base `homekit` integration.
 
-[Sin publicar]: https://github.com/edisonmontes/HomeKit_Bridge/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/edisonmontes/HomeKit_Bridge/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/edisonmontes/HomeKit_Bridge/releases/tag/v0.1.0
