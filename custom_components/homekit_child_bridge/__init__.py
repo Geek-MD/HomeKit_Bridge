@@ -5,8 +5,9 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from homeassistant.components.homekit.const import CONF_PIN_CODE
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_NAME, CONF_PIN_CODE, CONF_PORT, Platform
+from homeassistant.const import CONF_NAME, CONF_PORT, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry as er
 
