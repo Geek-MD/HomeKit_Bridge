@@ -18,8 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - HACS installation metadata.
 - Battery Devices Monitor-style `ci.yaml` and `validate.yaml` GitHub Actions for
   tests, linting, Home Assistant validation, and HACS validation.
-- An explicit manifest declaration that this integration replaces direct
-  configuration of the base `homekit` integration.
+- Management of grouped bridges in place of direct group configuration through
+  the base `homekit` integration.
 - English base documentation for installation, configuration, and development.
 
 [0.1.0]: https://github.com/edisonmontes/HomeKit_Bridge/releases/tag/v0.1.0

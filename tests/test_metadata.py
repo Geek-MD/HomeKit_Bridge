@@ -20,7 +20,7 @@ def test_manifest_declares_config_flow_and_homekit_dependency() -> None:
     assert manifest["domain"] == "homekit_child_bridge"
     assert manifest["config_flow"] is True
     assert "homekit" in manifest["dependencies"]
-    assert manifest["replaces"] == ["homekit"]
+    assert "replaces" not in manifest
 
 
 def test_release_documentation_matches_manifest_version() -> None:

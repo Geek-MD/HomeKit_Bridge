@@ -29,9 +29,10 @@ This README documents **HomeKit Child Bridge 0.1.0**, the first public release.
 - Configuration UI translations for English, Spanish, German, Italian, French,
   and Portuguese.
 
-The manifest declares that this integration replaces direct configuration of the
-base `homekit` integration. It still uses Home Assistant's native HAP implementation
-internally to retain compatibility with Home Assistant and Apple Home.
+This integration replaces the need to configure groups directly through the base
+`homekit` integration. Its manifest declares `homekit` as a dependency, and the
+integration uses Home Assistant's native HAP implementation internally to retain
+compatibility with Home Assistant and Apple Home.
 
 See the [0.1.0 changelog](CHANGELOG.md#010---2026-09-20) for the complete release
 notes.
