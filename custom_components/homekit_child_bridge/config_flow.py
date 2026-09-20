@@ -90,8 +90,7 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 entry = self.hass.config_entries.async_get_entry(entry_id)
                 assert entry is not None
                 if any(
-                    candidate.entry_id != entry.entry_id
-                    and candidate.unique_id == unique_id
+                    candidate.entry_id != entry.entry_id and candidate.unique_id == unique_id
                     for candidate in self.hass.config_entries.async_entries(DOMAIN)
                 ):
                     return self.async_abort(reason="already_configured")
