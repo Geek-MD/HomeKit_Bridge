@@ -16,8 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - English, Spanish, German, Italian, French, and Portuguese configuration UI
   strings.
 - HACS installation metadata.
-- GitHub Actions for tests, linting, Home Assistant and HACS validation, and
-  packaged releases.
+- Battery Devices Monitor-style `ci.yaml` and `validate.yaml` GitHub Actions for
+  tests, linting, Home Assistant validation, and HACS validation.
 - An explicit manifest declaration that this integration replaces direct
   configuration of the base `homekit` integration.
 - English base documentation for installation, configuration, and development.

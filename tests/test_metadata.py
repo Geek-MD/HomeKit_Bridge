@@ -34,15 +34,10 @@ def test_release_documentation_matches_manifest_version() -> None:
 
 
 def test_github_actions_are_present() -> None:
-    """Validation and release automation must remain part of the repository."""
+    """The standard CI and validation workflows must remain in the repository."""
     workflows = ROOT / ".github" / "workflows"
 
-    assert (workflows / "validate.yml").is_file()
-    assert (workflows / "release.yml").is_file()
-
-    hacs = _json(ROOT / "hacs.json")
-    assert hacs["zip_release"] is True
-    assert hacs["filename"] == "homekit_child_bridge.zip"
+    assert {path.name for path in workflows.iterdir()} == {"ci.yaml", "validate.yaml"}
 
 
 def _keys(value: object, prefix: str = "") -> set[str]:

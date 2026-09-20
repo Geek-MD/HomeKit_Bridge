@@ -1,6 +1,7 @@
 # HomeKit Child Bridge
 
-[![Validate](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/validate.yml/badge.svg)](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/validate.yml)
+[![CI](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/ci.yaml/badge.svg)](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/ci.yaml)
+[![Validate](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/validate.yaml/badge.svg)](https://github.com/edisonmontes/HomeKit_Bridge/actions/workflows/validate.yaml)
 [![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
 
 A custom Home Assistant integration that publishes groups of entities as separate
@@ -84,9 +85,9 @@ The integration version is defined in
 `custom_components/homekit_child_bridge/manifest.json`. Any behavior added after
 0.1.0 must be documented in the changelog for its corresponding release.
 
-Pull requests and pushes are checked with Ruff, pytest, hassfest, and HACS
-validation. Publishing a GitHub release whose tag matches `v0.1.0` automatically
-attaches an installable `homekit_child_bridge.zip` archive.
+Pull requests and pushes are checked by the same `ci.yaml` and `validate.yaml`
+workflows used by Battery Devices Monitor. They run Ruff, pytest, hassfest, and
+HACS validation; validation is also scheduled daily.
 
 ## License
 
