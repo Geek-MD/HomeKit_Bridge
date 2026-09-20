@@ -79,7 +79,7 @@ ruff check .
 
 The integration version is defined in
 `custom_components/homekit_child_bridge/manifest.json`. Any behavior added after
-0.1.0 must be documented under **Unreleased** in `CHANGELOG.md`.
+0.1.0 must be documented in the changelog for its corresponding release.
 
 ## License
 
