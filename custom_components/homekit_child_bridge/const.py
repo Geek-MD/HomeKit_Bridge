@@ -11,6 +11,12 @@ CONF_SOURCE = "source"
 CONF_CHILD_ENTRY_ID = "child_entry_id"
 CONF_PAIRING_CODE = "pairing_code"
 
+# This key is part of the data contract accepted by the native HomeKit config
+# flow.  Keep it local instead of importing HomeKit's private ``const`` module:
+# importing that module also happens while Home Assistant discovers our config
+# flow, and constants have moved between Home Assistant releases.
+CONF_HOMEKIT_PIN_CODE = "pin_code"
+
 GROUP_DOMAIN = "domain"
 GROUP_INTEGRATION = "integration"
 
