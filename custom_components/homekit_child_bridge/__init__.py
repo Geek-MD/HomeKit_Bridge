@@ -5,7 +5,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from homeassistant.components.homekit.const import CONF_PIN_CODE
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_NAME, CONF_PORT, Platform
 from homeassistant.core import HomeAssistant
@@ -14,6 +13,7 @@ from homeassistant.helpers import entity_registry as er
 from .const import (
     CONF_CHILD_ENTRY_ID,
     CONF_GROUP_TYPE,
+    CONF_HOMEKIT_PIN_CODE,
     CONF_PAIRING_CODE,
     CONF_SOURCE,
     GROUP_DOMAIN,
@@ -97,7 +97,7 @@ def _homekit_config(
     return {
         CONF_NAME: entry.title,
         CONF_PORT: port if isinstance(port, int) else _available_homekit_port(hass),
-        CONF_PIN_CODE: entry.data[CONF_PAIRING_CODE],
+        CONF_HOMEKIT_PIN_CODE: entry.data[CONF_PAIRING_CODE],
         "filter": entity_filter,
         "entity_config": {},
         "mode": "bridge",

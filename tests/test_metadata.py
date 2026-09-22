@@ -47,12 +47,14 @@ def test_release_documentation_matches_manifest_version() -> None:
     assert f"## [{version}]" in changelog
 
 
-def test_homekit_pin_code_uses_component_constant() -> None:
-    """The HomeKit-only constant must not be imported from HA's global constants."""
+def test_homekit_pin_code_does_not_import_private_homekit_module() -> None:
+    """Config-flow discovery must not depend on HomeKit's private constants."""
     integration = (INTEGRATION / "__init__.py").read_text(encoding="utf-8")
+    constants = (INTEGRATION / "const.py").read_text(encoding="utf-8")
 
-    assert "from homeassistant.components.homekit.const import CONF_PIN_CODE" in integration
-    assert "from homeassistant.const import CONF_NAME, CONF_PIN_CODE" not in integration
+    assert "homeassistant.components.homekit.const" not in integration
+    assert 'CONF_HOMEKIT_PIN_CODE = "pin_code"' in constants
+    assert "CONF_HOMEKIT_PIN_CODE: entry.data[CONF_PAIRING_CODE]" in integration
 
 
 def test_homekit_port_allocator_skips_ports_in_use() -> None:
