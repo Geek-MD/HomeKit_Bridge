@@ -9,6 +9,7 @@ HOMEKIT_PORT_START = 21063
 CONF_GROUP_TYPE = "group_type"
 CONF_SOURCE = "source"
 CONF_CHILD_ENTRY_ID = "child_entry_id"
+CONF_INCLUDE_ENTITY_GROUPS = "include_entity_groups"
 CONF_PAIRING_CODE = "pairing_code"
 
 # This key is part of the data contract accepted by the native HomeKit config
@@ -21,6 +22,19 @@ GROUP_DOMAIN = "domain"
 GROUP_INTEGRATION = "integration"
 
 DEFAULT_NAME = "HomeKit Child Bridge"
+
+
+def is_entity_group(platform: str | None, members: object) -> bool:
+    """Return whether registry and state metadata describe an entity group."""
+    return platform == "group" or (
+        isinstance(members, (list, tuple))
+        and all(isinstance(entity_id, str) for entity_id in members)
+    )
+
+
+def without_entity_groups(entity_ids: list[str], group_entity_ids: list[str]) -> list[str]:
+    """Return sorted individual entities while removing aggregate groups."""
+    return sorted(set(entity_ids).difference(group_entity_ids))
 
 
 def next_homekit_port(used_ports: set[int]) -> int:

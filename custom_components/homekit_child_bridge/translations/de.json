@@ -11,9 +11,10 @@
       },
       "source_type": {
         "title": "Export auswählen",
-        "description": "Für diese Auswahl werden eine separate HomeKit-Bridge und ein Kopplungscode erstellt.",
+        "description": "Einzelne Entitäten werden immer einbezogen. Wähle, ob ihre Gruppen ebenfalls einbezogen werden sollen.",
         "data": {
-          "source": "Domäne oder Integration"
+          "source": "Domäne oder Integration",
+          "include_entity_groups": "Entitätsgruppen einschließen"
         }
       },
       "reconfigure": {

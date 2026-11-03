@@ -11,9 +11,10 @@
       },
       "source_type": {
         "title": "Elige qué exportar",
-        "description": "Se creará un puente HomeKit y un código de emparejamiento separado para esta selección.",
+        "description": "Las entidades individuales siempre se incluyen. Elige si también quieres incluir sus grupos.",
         "data": {
-          "source": "Dominio o integración"
+          "source": "Dominio o integración",
+          "include_entity_groups": "Incluir grupos de entidades"
         }
       },
       "reconfigure": {

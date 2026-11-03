@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] - 2026-11-03
+
+### Added
+
+- An **Include entity groups** option in both initial configuration and
+  reconfiguration. It is disabled for new bridges so the individual members of
+  groups, such as the three lights in a dining-room light group, are exported
+  without also exporting the aggregate group entity.
+
+### Changed
+
+- Existing entries continue to include entity groups until they are explicitly
+  reconfigured, preserving backward compatibility during upgrade.
+
 ## [0.3.2] - 2026-09-22
 
 ### Fixed
@@ -74,3 +88,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 [0.3.0]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.3.0
 [0.3.1]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.3.1
 [0.3.2]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.3.2
+[0.4.0]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.4.0

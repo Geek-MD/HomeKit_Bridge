@@ -11,9 +11,10 @@
       },
       "source_type": {
         "title": "Choisir les éléments à exporter",
-        "description": "Un pont HomeKit et un code de jumelage distincts seront créés pour cette sélection.",
+        "description": "Les entités individuelles sont toujours incluses. Choisissez si leurs groupes doivent également être inclus.",
         "data": {
-          "source": "Domaine ou intégration"
+          "source": "Domaine ou intégration",
+          "include_entity_groups": "Inclure les groupes d’entités"
         }
       },
       "reconfigure": {

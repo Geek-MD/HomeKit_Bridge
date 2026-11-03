@@ -8,13 +8,11 @@ A custom Home Assistant integration that publishes groups of entities as separat
 Apple Home bridges. Each entry creates a native `homekit` entry, so Home Assistant
 provides an independent QR code and pairing code for every group.
 
-## Version 0.3.2
+## Version 0.4.0
 
-This README documents **HomeKit Child Bridge 0.3.2**. This patch release restores
-the configuration flow on Home Assistant versions whose native HomeKit
-integration does not export the same private constants, while retaining
-reconfiguration and the sensor containing each instance's Apple Home pairing
-code.
+This README documents **HomeKit Child Bridge 0.4.0**. This release adds control
+over whether aggregate entity groups are exported alongside their individual
+members.
 
 ### Requirements
 
@@ -29,6 +27,8 @@ code.
 - Create an independent HomeKit bridge for every selection.
 - Configure multiple instances, each with its own bridge, port, and pairing code.
 - Reconfigure an existing instance without replacing its managed bridge.
+- Include entity groups, or ignore them while still exporting their individual
+  members.
 - Read the Apple Home setup code from the instance's pairing-code sensor.
 - Automatically remove the managed bridge when its group is deleted.
 - Reuse Home Assistant's built-in HomeKit implementation instead of running an
@@ -41,7 +41,7 @@ This integration replaces the need to configure groups directly through the base
 integration uses Home Assistant's native HAP implementation internally to retain
 compatibility with Home Assistant and Apple Home.
 
-See the [0.3.2 changelog](CHANGELOG.md#032---2026-09-22) for the complete release
+See the [0.4.0 changelog](CHANGELOG.md#040---2026-11-03) for the complete release
 notes.
 
 ### Installation
@@ -49,7 +49,7 @@ notes.
 #### HACS
 
 1. Add this repository to HACS as a custom integration repository.
-2. Search for **HomeKit Child Bridge** and install version **0.3.2**.
+2. Search for **HomeKit Child Bridge** and install version **0.4.0**.
 3. Restart Home Assistant.
 
 #### Manual installation
@@ -62,8 +62,8 @@ notes.
 
 1. Go to **Settings → Devices & services → Add integration** and search for
    **HomeKit Child Bridge**.
-2. Choose whether to group entities by domain or integration, then select the
-   group to export.
+2. Choose whether to group entities by domain or integration, select the group
+   to export, and decide whether aggregate entity groups should also be included.
 3. Open the new **HomeKit Bridge** entry created by Home Assistant and scan its QR
    code.
 
@@ -71,6 +71,11 @@ Home Assistant's native HomeKit integration presents the QR code while an
 unpaired bridge is ready for pairing. The same numeric setup code remains
 available in the **Pairing code** sensor created under the HomeKit Child Bridge
 device.
+
+For example, if `light.dining_room` groups three individual lights, disabling
+**Include entity groups** keeps the three member lights in the bridge and omits
+only `light.dining_room`. This option is disabled by default for new bridges.
+Existing bridges retain their previous behavior until they are reconfigured.
 
 To change an instance later, open **Settings → Devices & services**, select its
 HomeKit Child Bridge entry, open the overflow menu, and choose **Reconfigure**.
@@ -82,7 +87,7 @@ belong to one instance.
 
 ### Supported languages
 
-Version 0.3.2 includes configuration UI translations for:
+Version 0.4.0 includes configuration UI translations for:
 
 - English
 - French
@@ -91,7 +96,7 @@ Version 0.3.2 includes configuration UI translations for:
 - Portuguese
 - Spanish
 
-## Development for 0.3.2
+## Development for 0.4.0
 
 ```bash
 python -m pip install -e '.[test]'
@@ -101,7 +106,7 @@ ruff check .
 
 The integration version is defined in
 `custom_components/homekit_child_bridge/manifest.json`. Any behavior added after
-0.3.2 must be documented in the changelog for its corresponding release.
+0.4.0 must be documented in the changelog for its corresponding release.
 
 Pull requests and pushes are checked by the same `ci.yaml` and `validate.yaml`
 workflows used by Battery Devices Monitor. They run Ruff, pytest, hassfest, and
