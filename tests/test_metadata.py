@@ -81,6 +81,43 @@ def test_generated_homekit_pairing_codes_are_valid() -> None:
     assert codes.isdisjoint(module.INVALID_PAIRING_CODES)
 
 
+def test_entity_group_detection_supports_helpers_and_yaml_groups() -> None:
+    """Group helpers and unregistered groups must both be recognized."""
+    spec = spec_from_file_location("homekit_child_bridge_const", INTEGRATION / "const.py")
+    assert spec is not None and spec.loader is not None
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    assert module.is_entity_group("group", None)
+    assert module.is_entity_group(None, ["light.one", "light.two"])
+    assert module.is_entity_group(None, ())
+    assert not module.is_entity_group("hue", None)
+    assert not module.is_entity_group(None, "light.one")
+
+    integration_entities = [
+        "light.dining_room",
+        "light.dining_room_one",
+        "light.dining_room_two",
+        "light.dining_room_three",
+    ]
+    assert module.without_entity_groups(integration_entities, ["light.dining_room"]) == [
+        "light.dining_room_one",
+        "light.dining_room_three",
+        "light.dining_room_two",
+    ]
+
+
+def test_entity_group_policy_is_configurable_and_backward_compatible() -> None:
+    """The config flow and HomeKit filter must implement the v0.4 group policy."""
+    config_flow = (INTEGRATION / "config_flow.py").read_text(encoding="utf-8")
+    integration = (INTEGRATION / "__init__.py").read_text(encoding="utf-8")
+
+    assert "CONF_INCLUDE_ENTITY_GROUPS" in config_flow
+    assert "return False" in config_flow
+    assert "entry.data.get(CONF_INCLUDE_ENTITY_GROUPS, True)" in integration
+    assert 'entity_filter["exclude_entities"] = group_entity_ids' in integration
+
+
 def test_github_actions_are_present() -> None:
     """The standard CI and validation workflows must remain in the repository."""
     workflows = ROOT / ".github" / "workflows"

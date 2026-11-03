@@ -11,9 +11,10 @@
       },
       "source_type": {
         "title": "Choose what to export",
-        "description": "A separate HomeKit bridge and pairing code will be created for this selection.",
+        "description": "Individual entities are always included. Choose whether their aggregate groups should also be included.",
         "data": {
-          "source": "Domain or integration"
+          "source": "Domain or integration",
+          "include_entity_groups": "Include entity groups"
         }
       },
       "reconfigure": {

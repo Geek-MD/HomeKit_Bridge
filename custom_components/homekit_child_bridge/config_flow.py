@@ -12,6 +12,7 @@ from homeassistant.helpers.selector import SelectOptionDict, SelectSelector, Sel
 from .const import (
     CONF_CHILD_ENTRY_ID,
     CONF_GROUP_TYPE,
+    CONF_INCLUDE_ENTITY_GROUPS,
     CONF_PAIRING_CODE,
     CONF_SOURCE,
     DOMAIN,
@@ -84,6 +85,7 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         options = self._source_options(group_type)
         if user_input is not None and CONF_SOURCE in user_input:
             source = user_input[CONF_SOURCE]
+            include_entity_groups = user_input.get(CONF_INCLUDE_ENTITY_GROUPS, True)
             unique_id = f"{group_type}:{source}"
             label = dict(options).get(source, source)
             if entry_id := self.context.get("reconfigure_entry_id"):
@@ -101,6 +103,7 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     entry,
                     data_updates={
                         CONF_GROUP_TYPE: group_type,
+                        CONF_INCLUDE_ENTITY_GROUPS: include_entity_groups,
                         CONF_SOURCE: source,
                         CONF_PAIRING_CODE: entry.data.get(
                             CONF_PAIRING_CODE, generate_pairing_code()
@@ -118,6 +121,7 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 title=f"HomeKit · {label}",
                 data={
                     CONF_GROUP_TYPE: group_type,
+                    CONF_INCLUDE_ENTITY_GROUPS: include_entity_groups,
                     CONF_SOURCE: source,
                     CONF_PAIRING_CODE: generate_pairing_code(),
                 },
@@ -129,6 +133,7 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             if current_source is not None
             else vol.Required(CONF_SOURCE)
         )
+        include_entity_groups = self._include_entity_groups_default()
         return self.async_show_form(
             step_id="source_type",
             data_schema=vol.Schema(
@@ -141,10 +146,19 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                             ],
                             mode="dropdown",
                         )
-                    )
+                    ),
+                    vol.Required(CONF_INCLUDE_ENTITY_GROUPS, default=include_entity_groups): bool,
                 }
             ),
         )
+
+    def _include_entity_groups_default(self) -> bool:
+        """Preserve the current group policy while reconfiguring an entry."""
+        if entry_id := self.context.get("reconfigure_entry_id"):
+            entry = self.hass.config_entries.async_get_entry(entry_id)
+            if entry:
+                return entry.data.get(CONF_INCLUDE_ENTITY_GROUPS, True)
+        return False
 
     def _current_source(self, group_type: str) -> str | None:
         """Return the current source when this is a reconfiguration flow."""

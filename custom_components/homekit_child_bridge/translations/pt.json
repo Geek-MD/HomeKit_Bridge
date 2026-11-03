@@ -11,9 +11,10 @@
       },
       "source_type": {
         "title": "Escolha o que exportar",
-        "description": "Uma ponte HomeKit e um código de emparelhamento separados serão criados para esta seleção.",
+        "description": "As entidades individuais são sempre incluídas. Escolha se os grupos também devem ser incluídos.",
         "data": {
-          "source": "Domínio ou integração"
+          "source": "Domínio ou integração",
+          "include_entity_groups": "Incluir grupos de entidades"
         }
       },
       "reconfigure": {
