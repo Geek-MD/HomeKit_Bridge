@@ -4,37 +4,23 @@
     "step": {
       "user": {
         "title": "Crear un puente hijo de HomeKit",
-        "description": "Elige cómo agrupar las entidades de este puente independiente.",
-        "data": {
-          "group_type": "Agrupar entidades por"
-        }
-      },
-      "source_type": {
-        "title": "Elige qué exportar",
-        "description": "Las entidades individuales siempre se incluyen. Elige si también quieres incluir sus grupos.",
+        "description": "Elige un dominio o una integración configurada y si también quieres incluir sus grupos o ayudantes. Las entidades individuales siempre se incluyen.",
         "data": {
           "source": "Dominio o integración",
-          "include_entity_groups": "Incluir grupos de entidades"
+          "include_entity_groups": "Incluir grupos o ayudantes de entidades"
         }
       },
       "reconfigure": {
         "title": "Reconfigurar un puente hijo de HomeKit",
-        "description": "Elige cómo reagrupar las entidades de este puente.",
+        "description": "Elige un dominio o una integración configurada y si también quieres incluir sus grupos o ayudantes. Las entidades individuales siempre se incluyen.",
         "data": {
-          "group_type": "Agrupar entidades por"
+          "source": "Dominio o integración",
+          "include_entity_groups": "Incluir grupos o ayudantes de entidades"
         }
       }
     },
     "abort": {
       "already_configured": "Este grupo ya tiene un puente HomeKit."
-    }
-  },
-  "selector": {
-    "group_type": {
-      "options": {
-        "domain": "Dominio (luces, persianas, etc.)",
-        "integration": "Integración configurada"
-      }
     }
   },
   "entity": {

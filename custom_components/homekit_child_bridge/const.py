@@ -22,6 +22,7 @@ GROUP_DOMAIN = "domain"
 GROUP_INTEGRATION = "integration"
 
 DEFAULT_NAME = "HomeKit Child Bridge"
+EMPTY_FILTER_ENTITY_ID = f"{DOMAIN}.no_entities"
 
 
 def is_entity_group(platform: str | None, members: object) -> bool:

@@ -4,37 +4,23 @@
     "step": {
       "user": {
         "title": "Crea un bridge secondario HomeKit",
-        "description": "Scegli come raggruppare le entità per questo bridge indipendente.",
-        "data": {
-          "group_type": "Raggruppa entità per"
-        }
-      },
-      "source_type": {
-        "title": "Scegli cosa esportare",
-        "description": "Le entità individuali sono sempre incluse. Scegli se includere anche i relativi gruppi.",
+        "description": "Scegli un dominio o un’integrazione configurata e se includere anche gruppi o helper. Le entità individuali sono sempre incluse.",
         "data": {
           "source": "Dominio o integrazione",
-          "include_entity_groups": "Includi gruppi di entità"
+          "include_entity_groups": "Includi gruppi o helper di entità"
         }
       },
       "reconfigure": {
         "title": "Riconfigura un bridge HomeKit secondario",
-        "description": "Scegli come raggruppare nuovamente le entità per questo bridge.",
+        "description": "Scegli un dominio o un’integrazione configurata e se includere anche gruppi o helper. Le entità individuali sono sempre incluse.",
         "data": {
-          "group_type": "Raggruppa entità per"
+          "source": "Dominio o integrazione",
+          "include_entity_groups": "Includi gruppi o helper di entità"
         }
       }
     },
     "abort": {
       "already_configured": "Questo gruppo dispone già di un bridge HomeKit."
-    }
-  },
-  "selector": {
-    "group_type": {
-      "options": {
-        "domain": "Dominio (luci, coperture e così via)",
-        "integration": "Integrazione configurata"
-      }
     }
   },
   "entity": {

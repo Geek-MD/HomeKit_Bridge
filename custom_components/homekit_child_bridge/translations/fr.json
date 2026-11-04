@@ -4,37 +4,23 @@
     "step": {
       "user": {
         "title": "Créer un pont enfant HomeKit",
-        "description": "Choisissez comment regrouper les entités de ce pont indépendant.",
-        "data": {
-          "group_type": "Regrouper les entités par"
-        }
-      },
-      "source_type": {
-        "title": "Choisir les éléments à exporter",
-        "description": "Les entités individuelles sont toujours incluses. Choisissez si leurs groupes doivent également être inclus.",
+        "description": "Choisissez un domaine ou une intégration configurée et si les groupes ou assistants doivent aussi être inclus. Les entités individuelles sont toujours incluses.",
         "data": {
           "source": "Domaine ou intégration",
-          "include_entity_groups": "Inclure les groupes d’entités"
+          "include_entity_groups": "Inclure les groupes ou assistants d’entités"
         }
       },
       "reconfigure": {
         "title": "Reconfigurer un pont enfant HomeKit",
-        "description": "Choisissez comment regrouper les entités de ce pont.",
+        "description": "Choisissez un domaine ou une intégration configurée et si les groupes ou assistants doivent aussi être inclus. Les entités individuelles sont toujours incluses.",
         "data": {
-          "group_type": "Regrouper les entités par"
+          "source": "Domaine ou intégration",
+          "include_entity_groups": "Inclure les groupes ou assistants d’entités"
         }
       }
     },
     "abort": {
       "already_configured": "Ce groupe possède déjà un pont HomeKit."
-    }
-  },
-  "selector": {
-    "group_type": {
-      "options": {
-        "domain": "Domaine (lumières, volets, etc.)",
-        "integration": "Intégration configurée"
-      }
     }
   },
   "entity": {

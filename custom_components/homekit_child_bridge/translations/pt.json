@@ -4,37 +4,23 @@
     "step": {
       "user": {
         "title": "Criar uma ponte secundária HomeKit",
-        "description": "Escolha como agrupar as entidades desta ponte independente.",
-        "data": {
-          "group_type": "Agrupar entidades por"
-        }
-      },
-      "source_type": {
-        "title": "Escolha o que exportar",
-        "description": "As entidades individuais são sempre incluídas. Escolha se os grupos também devem ser incluídos.",
+        "description": "Escolha um domínio ou uma integração configurada e se os grupos ou auxiliares também devem ser incluídos. As entidades individuais são sempre incluídas.",
         "data": {
           "source": "Domínio ou integração",
-          "include_entity_groups": "Incluir grupos de entidades"
+          "include_entity_groups": "Incluir grupos ou auxiliares de entidades"
         }
       },
       "reconfigure": {
         "title": "Reconfigurar uma ponte secundária HomeKit",
-        "description": "Escolha como reagrupar as entidades para esta ponte.",
+        "description": "Escolha um domínio ou uma integração configurada e se os grupos ou auxiliares também devem ser incluídos. As entidades individuais são sempre incluídas.",
         "data": {
-          "group_type": "Agrupar entidades por"
+          "source": "Domínio ou integração",
+          "include_entity_groups": "Incluir grupos ou auxiliares de entidades"
         }
       }
     },
     "abort": {
       "already_configured": "Este grupo já possui uma ponte HomeKit."
-    }
-  },
-  "selector": {
-    "group_type": {
-      "options": {
-        "domain": "Domínio (luzes, persianas etc.)",
-        "integration": "Integração configurada"
-      }
     }
   },
   "entity": {

@@ -8,11 +8,11 @@ A custom Home Assistant integration that publishes groups of entities as separat
 Apple Home bridges. Each entry creates a native `homekit` entry, so Home Assistant
 provides an independent QR code and pairing code for every group.
 
-## Version 0.4.0
+## Version 0.4.1
 
-This README documents **HomeKit Child Bridge 0.4.0**. This release adds control
-over whether aggregate entity groups are exported alongside their individual
-members.
+This README documents **HomeKit Child Bridge 0.4.1**. This release combines the
+domain/integration selector and entity-group choice into one dialog for both
+initial configuration and reconfiguration.
 
 ### Requirements
 
@@ -41,7 +41,7 @@ This integration replaces the need to configure groups directly through the base
 integration uses Home Assistant's native HAP implementation internally to retain
 compatibility with Home Assistant and Apple Home.
 
-See the [0.4.0 changelog](CHANGELOG.md#040---2026-11-03) for the complete release
+See the [0.4.1 changelog](CHANGELOG.md#041---2026-11-04) for the complete release
 notes.
 
 ### Installation
@@ -49,7 +49,7 @@ notes.
 #### HACS
 
 1. Add this repository to HACS as a custom integration repository.
-2. Search for **HomeKit Child Bridge** and install version **0.4.0**.
+2. Search for **HomeKit Child Bridge** and install version **0.4.1**.
 3. Restart Home Assistant.
 
 #### Manual installation
@@ -62,8 +62,8 @@ notes.
 
 1. Go to **Settings → Devices & services → Add integration** and search for
    **HomeKit Child Bridge**.
-2. Choose whether to group entities by domain or integration, select the group
-   to export, and decide whether aggregate entity groups should also be included.
+2. Select a domain or configured integration and decide whether aggregate entity
+   groups or helpers should also be included in the same dialog.
 3. Open the new **HomeKit Bridge** entry created by Home Assistant and scan its QR
    code.
 
@@ -87,7 +87,7 @@ belong to one instance.
 
 ### Supported languages
 
-Version 0.4.0 includes configuration UI translations for:
+Version 0.4.1 includes configuration UI translations for:
 
 - English
 - French
@@ -96,7 +96,7 @@ Version 0.4.0 includes configuration UI translations for:
 - Portuguese
 - Spanish
 
-## Development for 0.4.0
+## Development for 0.4.1
 
 ```bash
 python -m pip install -e '.[test]'
@@ -106,7 +106,7 @@ ruff check .
 
 The integration version is defined in
 `custom_components/homekit_child_bridge/manifest.json`. Any behavior added after
-0.4.0 must be documented in the changelog for its corresponding release.
+0.4.1 must be documented in the changelog for its corresponding release.
 
 Pull requests and pushes are checked by the same `ci.yaml` and `validate.yaml`
 workflows used by Battery Devices Monitor. They run Ruff, pytest, hassfest, and

@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.1] - 2026-11-04
+
+### Fixed
+
+- Combine the domain/integration selector and the **Include entity groups or
+  helpers** choice into one dialog for both initial configuration and
+  reconfiguration. Individual entities remain included regardless of this
+  choice.
+- Include the individual members of a selected group-helper entry even when
+  those members belong to other integrations, and prevent an empty selection
+  from becoming an unfiltered HomeKit bridge.
+- Rebuild entity-group exclusions after Home Assistant finishes starting so
+  registered groups cannot slip through because their states loaded later.
+
 ## [0.4.0] - 2026-11-03
 
 ### Added
@@ -89,3 +103,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 [0.3.1]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.3.1
 [0.3.2]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.3.2
 [0.4.0]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.4.0
+[0.4.1]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.4.1
