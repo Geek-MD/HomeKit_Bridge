@@ -4,24 +4,25 @@
     "step": {
       "user": {
         "title": "Créer un pont enfant HomeKit",
-        "description": "Choisissez comment regrouper les entités de ce pont indépendant.",
+        "description": "Les entités individuelles sont toujours incluses. Choisissez leur regroupement et si les groupes ou assistants doivent aussi être inclus.",
         "data": {
-          "group_type": "Regrouper les entités par"
+          "group_type": "Regrouper les entités par",
+          "include_entity_groups": "Inclure les groupes ou assistants d’entités"
         }
       },
       "source_type": {
         "title": "Choisir les éléments à exporter",
-        "description": "Les entités individuelles sont toujours incluses. Choisissez si leurs groupes doivent également être inclus.",
+        "description": "Un pont HomeKit et un code de jumelage distincts seront créés pour cette sélection.",
         "data": {
-          "source": "Domaine ou intégration",
-          "include_entity_groups": "Inclure les groupes d’entités"
+          "source": "Domaine ou intégration"
         }
       },
       "reconfigure": {
         "title": "Reconfigurer un pont enfant HomeKit",
-        "description": "Choisissez comment regrouper les entités de ce pont.",
+        "description": "Les entités individuelles sont toujours incluses. Choisissez leur regroupement et si les groupes ou assistants doivent aussi être inclus.",
         "data": {
-          "group_type": "Regrouper les entités par"
+          "group_type": "Regrouper les entités par",
+          "include_entity_groups": "Inclure les groupes ou assistants d’entités"
         }
       }
     },

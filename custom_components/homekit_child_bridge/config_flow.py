@@ -43,7 +43,8 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                             options=[GROUP_DOMAIN, GROUP_INTEGRATION],
                             translation_key="group_type",
                         )
-                    )
+                    ),
+                    vol.Required(CONF_INCLUDE_ENTITY_GROUPS, default=False): bool,
                 }
             ),
         )
@@ -68,7 +69,11 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                             options=[GROUP_DOMAIN, GROUP_INTEGRATION],
                             translation_key="group_type",
                         )
-                    )
+                    ),
+                    vol.Required(
+                        CONF_INCLUDE_ENTITY_GROUPS,
+                        default=entry.data.get(CONF_INCLUDE_ENTITY_GROUPS, True),
+                    ): bool,
                 }
             ),
         )
@@ -81,11 +86,12 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input and CONF_GROUP_TYPE in user_input:
             group_type = user_input[CONF_GROUP_TYPE]
             self.context[CONF_GROUP_TYPE] = group_type
+            self.context[CONF_INCLUDE_ENTITY_GROUPS] = user_input[CONF_INCLUDE_ENTITY_GROUPS]
 
         options = self._source_options(group_type)
         if user_input is not None and CONF_SOURCE in user_input:
             source = user_input[CONF_SOURCE]
-            include_entity_groups = user_input.get(CONF_INCLUDE_ENTITY_GROUPS, True)
+            include_entity_groups = self.context[CONF_INCLUDE_ENTITY_GROUPS]
             unique_id = f"{group_type}:{source}"
             label = dict(options).get(source, source)
             if entry_id := self.context.get("reconfigure_entry_id"):
@@ -133,7 +139,6 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             if current_source is not None
             else vol.Required(CONF_SOURCE)
         )
-        include_entity_groups = self._include_entity_groups_default()
         return self.async_show_form(
             step_id="source_type",
             data_schema=vol.Schema(
@@ -146,19 +151,10 @@ class HomeKitChildBridgeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                             ],
                             mode="dropdown",
                         )
-                    ),
-                    vol.Required(CONF_INCLUDE_ENTITY_GROUPS, default=include_entity_groups): bool,
+                    )
                 }
             ),
         )
-
-    def _include_entity_groups_default(self) -> bool:
-        """Preserve the current group policy while reconfiguring an entry."""
-        if entry_id := self.context.get("reconfigure_entry_id"):
-            entry = self.hass.config_entries.async_get_entry(entry_id)
-            if entry:
-                return entry.data.get(CONF_INCLUDE_ENTITY_GROUPS, True)
-        return False
 
     def _current_source(self, group_type: str) -> str | None:
         """Return the current source when this is a reconfiguration flow."""

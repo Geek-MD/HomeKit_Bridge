@@ -111,11 +111,15 @@ def test_entity_group_policy_is_configurable_and_backward_compatible() -> None:
     """The config flow and HomeKit filter must implement the v0.4 group policy."""
     config_flow = (INTEGRATION / "config_flow.py").read_text(encoding="utf-8")
     integration = (INTEGRATION / "__init__.py").read_text(encoding="utf-8")
+    strings = _json(INTEGRATION / "strings.json")
 
     assert "CONF_INCLUDE_ENTITY_GROUPS" in config_flow
-    assert "return False" in config_flow
+    assert "vol.Required(CONF_INCLUDE_ENTITY_GROUPS, default=False)" in config_flow
     assert "entry.data.get(CONF_INCLUDE_ENTITY_GROUPS, True)" in integration
     assert 'entity_filter["exclude_entities"] = group_entity_ids' in integration
+    assert "include_entity_groups" in strings["config"]["step"]["user"]["data"]
+    assert "include_entity_groups" in strings["config"]["step"]["reconfigure"]["data"]
+    assert "include_entity_groups" not in strings["config"]["step"]["source_type"]["data"]
 
 
 def test_github_actions_are_present() -> None:

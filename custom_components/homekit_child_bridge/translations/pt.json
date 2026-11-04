@@ -4,24 +4,25 @@
     "step": {
       "user": {
         "title": "Criar uma ponte secundária HomeKit",
-        "description": "Escolha como agrupar as entidades desta ponte independente.",
+        "description": "As entidades individuais são sempre incluídas. Escolha o agrupamento e se os grupos ou auxiliares também devem ser incluídos.",
         "data": {
-          "group_type": "Agrupar entidades por"
+          "group_type": "Agrupar entidades por",
+          "include_entity_groups": "Incluir grupos ou auxiliares de entidades"
         }
       },
       "source_type": {
         "title": "Escolha o que exportar",
-        "description": "As entidades individuais são sempre incluídas. Escolha se os grupos também devem ser incluídos.",
+        "description": "Uma ponte HomeKit e um código de emparelhamento separados serão criados para esta seleção.",
         "data": {
-          "source": "Domínio ou integração",
-          "include_entity_groups": "Incluir grupos de entidades"
+          "source": "Domínio ou integração"
         }
       },
       "reconfigure": {
         "title": "Reconfigurar uma ponte secundária HomeKit",
-        "description": "Escolha como reagrupar as entidades para esta ponte.",
+        "description": "As entidades individuais são sempre incluídas. Escolha o agrupamento e se os grupos ou auxiliares também devem ser incluídos.",
         "data": {
-          "group_type": "Agrupar entidades por"
+          "group_type": "Agrupar entidades por",
+          "include_entity_groups": "Incluir grupos ou auxiliares de entidades"
         }
       }
     },

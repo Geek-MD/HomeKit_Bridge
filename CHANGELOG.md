@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.1] - 2026-11-04
+
+### Fixed
+
+- Show the **Include entity groups or helpers** choice directly beside the
+  grouping type in both initial configuration and reconfiguration. Individual
+  entities remain included regardless of this choice.
+
 ## [0.4.0] - 2026-11-03
 
 ### Added
@@ -89,3 +97,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 [0.3.1]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.3.1
 [0.3.2]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.3.2
 [0.4.0]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.4.0
+[0.4.1]: https://github.com/Geek-MD/HomeKit_Bridge/releases/tag/v0.4.1

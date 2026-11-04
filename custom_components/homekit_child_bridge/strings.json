@@ -4,24 +4,25 @@
     "step": {
       "user": {
         "title": "Create a HomeKit child bridge",
-        "description": "Choose how to group the entities for this independent bridge.",
+        "description": "Individual entities are always included. Choose how to group them and whether their aggregate groups or helpers should also be included.",
         "data": {
-          "group_type": "Group entities by"
+          "group_type": "Group entities by",
+          "include_entity_groups": "Include entity groups or helpers"
         }
       },
       "source_type": {
         "title": "Choose what to export",
-        "description": "Individual entities are always included. Choose whether their aggregate groups should also be included.",
+        "description": "A separate HomeKit bridge and pairing code will be created for this selection.",
         "data": {
-          "source": "Domain or integration",
-          "include_entity_groups": "Include entity groups"
+          "source": "Domain or integration"
         }
       },
       "reconfigure": {
         "title": "Reconfigure a HomeKit child bridge",
-        "description": "Choose how to regroup the entities for this bridge.",
+        "description": "Individual entities are always included. Choose how to regroup them and whether their aggregate groups or helpers should also be included.",
         "data": {
-          "group_type": "Group entities by"
+          "group_type": "Group entities by",
+          "include_entity_groups": "Include entity groups or helpers"
         }
       }
     },
