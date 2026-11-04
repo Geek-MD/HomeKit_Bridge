@@ -6,8 +6,14 @@ import logging
 from typing import Any
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import ATTR_ENTITY_ID, CONF_NAME, CONF_PORT, Platform
-from homeassistant.core import HomeAssistant
+from homeassistant.const import (
+    ATTR_ENTITY_ID,
+    CONF_NAME,
+    CONF_PORT,
+    EVENT_HOMEASSISTANT_STARTED,
+    Platform,
+)
+from homeassistant.core import CoreState, Event, HomeAssistant, callback
 from homeassistant.helpers import entity_registry as er
 
 from .const import (
@@ -17,6 +23,7 @@ from .const import (
     CONF_INCLUDE_ENTITY_GROUPS,
     CONF_PAIRING_CODE,
     CONF_SOURCE,
+    EMPTY_FILTER_ENTITY_ID,
     GROUP_DOMAIN,
     HOMEKIT_DOMAIN,
     generate_pairing_code,
@@ -31,6 +38,17 @@ PLATFORMS = [Platform.SENSOR]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Ensure the native HomeKit child bridge exists."""
+    if hass.state is not CoreState.running:
+
+        @callback
+        def _reload_after_start(_event: Event) -> None:
+            """Rebuild filters after every source integration has loaded."""
+            hass.async_create_task(hass.config_entries.async_reload(entry.entry_id))
+
+        entry.async_on_unload(
+            hass.bus.async_listen_once(EVENT_HOMEASSISTANT_STARTED, _reload_after_start)
+        )
+
     if CONF_PAIRING_CODE not in entry.data:
         hass.config_entries.async_update_entry(
             entry,
@@ -89,13 +107,28 @@ def _homekit_config(
     include_entity_groups = entry.data.get(CONF_INCLUDE_ENTITY_GROUPS, True)
     if entry.data[CONF_GROUP_TYPE] == GROUP_DOMAIN:
         entity_filter = {"include_domains": [source]}
-        candidate_entity_ids = [state.entity_id for state in hass.states.async_all({source})]
+        candidate_entity_ids = sorted(
+            {state.entity_id for state in hass.states.async_all({source})}
+            | {
+                entity.entity_id
+                for entity in registry.entities.values()
+                if entity.domain == source and entity.disabled_by is None
+            }
+        )
     else:
-        candidate_entity_ids = [
+        source_entity_ids = [
             entity.entity_id
             for entity in registry.entities.values()
             if entity.config_entry_id == source and entity.disabled_by is None
         ]
+        candidate_entity_ids = sorted(
+            set(source_entity_ids)
+            | {
+                member_entity_id
+                for entity_id in source_entity_ids
+                for member_entity_id in _entity_group_members(hass, registry, entity_id)
+            }
+        )
         entity_filter = {"include_entities": sorted(candidate_entity_ids)}
 
     if not include_entity_groups:
@@ -107,9 +140,10 @@ def _homekit_config(
         if entry.data[CONF_GROUP_TYPE] == GROUP_DOMAIN:
             entity_filter["exclude_entities"] = group_entity_ids
         else:
-            entity_filter["include_entities"] = without_entity_groups(
+            individual_entity_ids = without_entity_groups(
                 entity_filter["include_entities"], group_entity_ids
             )
+            entity_filter["include_entities"] = individual_entity_ids or [EMPTY_FILTER_ENTITY_ID]
 
     return {
         CONF_NAME: entry.title,
@@ -129,6 +163,17 @@ def _is_entity_group(hass: HomeAssistant, registry: er.EntityRegistry, entity_id
         registry_entry.platform if registry_entry else None,
         state.attributes.get(ATTR_ENTITY_ID) if state else None,
     )
+
+
+def _entity_group_members(
+    hass: HomeAssistant, registry: er.EntityRegistry, entity_id: str
+) -> tuple[str, ...]:
+    """Return members of an aggregate entity while rejecting unrelated attributes."""
+    state = hass.states.get(entity_id)
+    members = state.attributes.get(ATTR_ENTITY_ID) if state else None
+    if not _is_entity_group(hass, registry, entity_id) or not isinstance(members, (list, tuple)):
+        return ()
+    return tuple(member for member in members if isinstance(member, str))
 
 
 def _available_homekit_port(hass: HomeAssistant) -> int:

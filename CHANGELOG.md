@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Show the **Include entity groups or helpers** choice directly beside the
   grouping type in both initial configuration and reconfiguration. Individual
   entities remain included regardless of this choice.
+- Include the individual members of a selected group-helper entry even when
+  those members belong to other integrations, and prevent an empty selection
+  from becoming an unfiltered HomeKit bridge.
+- Rebuild entity-group exclusions after Home Assistant finishes starting so
+  registered groups cannot slip through because their states loaded later.
 
 ## [0.4.0] - 2026-11-03
 
