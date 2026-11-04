@@ -10,9 +10,9 @@ provides an independent QR code and pairing code for every group.
 
 ## Version 0.4.1
 
-This README documents **HomeKit Child Bridge 0.4.1**. This release puts the
-entity-group choice directly on both the initial configuration and
-reconfiguration screens.
+This README documents **HomeKit Child Bridge 0.4.1**. This release combines the
+domain/integration selector and entity-group choice into one dialog for both
+initial configuration and reconfiguration.
 
 ### Requirements
 
@@ -62,10 +62,9 @@ notes.
 
 1. Go to **Settings → Devices & services → Add integration** and search for
    **HomeKit Child Bridge**.
-2. Choose whether to group entities by domain or integration and decide whether
-   aggregate entity groups or helpers should also be included.
-3. Select the domain or integration to export.
-4. Open the new **HomeKit Bridge** entry created by Home Assistant and scan its QR
+2. Select a domain or configured integration and decide whether aggregate entity
+   groups or helpers should also be included in the same dialog.
+3. Open the new **HomeKit Bridge** entry created by Home Assistant and scan its QR
    code.
 
 Home Assistant's native HomeKit integration presents the QR code while an

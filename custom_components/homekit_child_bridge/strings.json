@@ -4,38 +4,23 @@
     "step": {
       "user": {
         "title": "Create a HomeKit child bridge",
-        "description": "Individual entities are always included. Choose how to group them and whether their aggregate groups or helpers should also be included.",
+        "description": "Choose a domain or configured integration and whether its aggregate groups or helpers should also be included. Individual entities are always included.",
         "data": {
-          "group_type": "Group entities by",
+          "source": "Domain or integration",
           "include_entity_groups": "Include entity groups or helpers"
-        }
-      },
-      "source_type": {
-        "title": "Choose what to export",
-        "description": "A separate HomeKit bridge and pairing code will be created for this selection.",
-        "data": {
-          "source": "Domain or integration"
         }
       },
       "reconfigure": {
         "title": "Reconfigure a HomeKit child bridge",
-        "description": "Individual entities are always included. Choose how to regroup them and whether their aggregate groups or helpers should also be included.",
+        "description": "Choose a domain or configured integration and whether its aggregate groups or helpers should also be included. Individual entities are always included.",
         "data": {
-          "group_type": "Group entities by",
+          "source": "Domain or integration",
           "include_entity_groups": "Include entity groups or helpers"
         }
       }
     },
     "abort": {
       "already_configured": "This group already has a HomeKit bridge."
-    }
-  },
-  "selector": {
-    "group_type": {
-      "options": {
-        "domain": "Domain (lights, covers, etc.)",
-        "integration": "Configured integration"
-      }
     }
   },
   "entity": {

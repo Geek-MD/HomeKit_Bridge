@@ -9,9 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
-- Show the **Include entity groups or helpers** choice directly beside the
-  grouping type in both initial configuration and reconfiguration. Individual
-  entities remain included regardless of this choice.
+- Combine the domain/integration selector and the **Include entity groups or
+  helpers** choice into one dialog for both initial configuration and
+  reconfiguration. Individual entities remain included regardless of this
+  choice.
 - Include the individual members of a selected group-helper entry even when
   those members belong to other integrations, and prevent an empty selection
   from becoming an unfiltered HomeKit bridge.

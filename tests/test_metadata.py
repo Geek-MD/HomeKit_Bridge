@@ -114,15 +114,18 @@ def test_entity_group_policy_is_configurable_and_backward_compatible() -> None:
     strings = _json(INTEGRATION / "strings.json")
 
     assert "CONF_INCLUDE_ENTITY_GROUPS" in config_flow
-    assert "vol.Required(CONF_INCLUDE_ENTITY_GROUPS, default=False)" in config_flow
+    assert "def _show_bridge_form(" in config_flow
+    assert "selection.split" in config_flow
     assert "entry.data.get(CONF_INCLUDE_ENTITY_GROUPS, True)" in integration
     assert 'entity_filter["exclude_entities"] = group_entity_ids' in integration
     assert "EMPTY_FILTER_ENTITY_ID" in integration
     assert "EVENT_HOMEASSISTANT_STARTED" in integration
     assert "_entity_group_members" in integration
+    assert "source" in strings["config"]["step"]["user"]["data"]
     assert "include_entity_groups" in strings["config"]["step"]["user"]["data"]
+    assert "source" in strings["config"]["step"]["reconfigure"]["data"]
     assert "include_entity_groups" in strings["config"]["step"]["reconfigure"]["data"]
-    assert "include_entity_groups" not in strings["config"]["step"]["source_type"]["data"]
+    assert "source_type" not in strings["config"]["step"]
 
 
 def test_github_actions_are_present() -> None:

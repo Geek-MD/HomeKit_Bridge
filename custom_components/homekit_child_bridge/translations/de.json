@@ -4,38 +4,23 @@
     "step": {
       "user": {
         "title": "HomeKit-Kind-Bridge erstellen",
-        "description": "Einzelne Entitäten werden immer einbezogen. Wähle die Gruppierung und ob Gruppen oder Helfer ebenfalls einbezogen werden sollen.",
+        "description": "Wähle eine Domäne oder konfigurierte Integration und ob Gruppen oder Helfer ebenfalls einbezogen werden sollen. Einzelne Entitäten werden immer einbezogen.",
         "data": {
-          "group_type": "Entitäten gruppieren nach",
+          "source": "Domäne oder Integration",
           "include_entity_groups": "Entitätsgruppen oder Helfer einbeziehen"
-        }
-      },
-      "source_type": {
-        "title": "Export auswählen",
-        "description": "Für diese Auswahl werden eine separate HomeKit-Bridge und ein Kopplungscode erstellt.",
-        "data": {
-          "source": "Domäne oder Integration"
         }
       },
       "reconfigure": {
         "title": "HomeKit-Unterbridge neu konfigurieren",
-        "description": "Einzelne Entitäten werden immer einbezogen. Wähle die Gruppierung und ob Gruppen oder Helfer ebenfalls einbezogen werden sollen.",
+        "description": "Wähle eine Domäne oder konfigurierte Integration und ob Gruppen oder Helfer ebenfalls einbezogen werden sollen. Einzelne Entitäten werden immer einbezogen.",
         "data": {
-          "group_type": "Entitäten gruppieren nach",
+          "source": "Domäne oder Integration",
           "include_entity_groups": "Entitätsgruppen oder Helfer einbeziehen"
         }
       }
     },
     "abort": {
       "already_configured": "Diese Gruppe hat bereits eine HomeKit-Bridge."
-    }
-  },
-  "selector": {
-    "group_type": {
-      "options": {
-        "domain": "Domäne (Lichter, Abdeckungen usw.)",
-        "integration": "Konfigurierte Integration"
-      }
     }
   },
   "entity": {
