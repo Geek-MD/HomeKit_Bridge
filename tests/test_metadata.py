@@ -137,9 +137,7 @@ def test_github_actions_are_present() -> None:
 
     validation = (workflows / "validate.yaml").read_text(encoding="utf-8")
     assert "ignore: topics description brands" in validation
-    brand_files = {
-        path.name for path in (INTEGRATION / "brand").glob("*.png")
-    }
+    brand_files = {path.name for path in (INTEGRATION / "brand").glob("*.png")}
     assert brand_files == {"icon.png", "icon@2x.png", "logo.png", "logo@2x.png"}
 
 
