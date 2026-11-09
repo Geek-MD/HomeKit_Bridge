@@ -1,8 +1,21 @@
-# HomeKit Child Bridge
+[![Geek-MD - HomeKit Child Bridge](https://img.shields.io/static/v1?label=Geek-MD&message=HomeKit%20Child%20Bridge&color=blue&logo=github)](https://github.com/Geek-MD/HomeKit_Bridge)
+[![Stars](https://img.shields.io/github/stars/Geek-MD/HomeKit_Bridge?style=social)](https://github.com/Geek-MD/HomeKit_Bridge)
+[![Forks](https://img.shields.io/github/forks/Geek-MD/HomeKit_Bridge?style=social)](https://github.com/Geek-MD/HomeKit_Bridge)
+
+[![GitHub Release](https://img.shields.io/github/release/Geek-MD/HomeKit_Bridge?include_prereleases&sort=semver&color=blue)](https://github.com/Geek-MD/HomeKit_Bridge/releases)
+[![License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/Geek-MD/HomeKit_Bridge/blob/main/LICENSE)
+[![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
 
 [![CI](https://github.com/Geek-MD/HomeKit_Bridge/actions/workflows/ci.yaml/badge.svg)](https://github.com/Geek-MD/HomeKit_Bridge/actions/workflows/ci.yaml)
 [![Validate](https://github.com/Geek-MD/HomeKit_Bridge/actions/workflows/validate.yaml/badge.svg)](https://github.com/Geek-MD/HomeKit_Bridge/actions/workflows/validate.yaml)
-[![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
+
+<!-- ha-marketplace:exclude-start -->
+[![Open your Home Assistant instance and open HomeKit Child Bridge in the Marketplace.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Geek-MD&repository=HomeKit_Bridge&category=integration)
+<!-- ha-marketplace:exclude-end -->
+
+<img width="200" height="200" alt="HomeKit Child Bridge logo" src="https://github.com/Geek-MD/HomeKit_Bridge/blob/main/custom_components/homekit_child_bridge/brand/logo.png?raw=true" />
+
+# HomeKit Child Bridge
 
 A custom Home Assistant integration that publishes groups of entities as separate
 Apple Home bridges. Each entry creates a native `homekit` entry, so Home Assistant
@@ -15,13 +28,13 @@ classification metadata used by the Home Assistant 2026.11 Marketplace. It also
 includes the combined domain/integration selector and entity-group choice added
 in 0.4.1.
 
-### Requirements
+## 📋 Requirements
 
 - Home Assistant 2025.1.0 or newer.
 - The built-in HomeKit integration.
 - An Apple Home hub is recommended for remote access and automations.
 
-### Features
+## ✨ Features
 
 - Export all entities from a domain (`light`, `cover`, and so on).
 - Export the entities that belong to a configured integration.
@@ -45,21 +58,27 @@ compatibility with Home Assistant and Apple Home.
 See the [0.4.2 changelog](CHANGELOG.md#042---2026-11-09) for the complete release
 notes.
 
-### Installation
+## 🛠 Installation
 
-#### HACS
+### Option 1: Marketplace (Home Assistant 2026.11 or newer)
+
+1. Go to **Settings → Marketplace**.
+2. Search for **HomeKit Child Bridge**, select **Install**, and confirm version **0.4.2**.
+3. Complete setup when Home Assistant opens the integration page.
+
+### Option 2: HACS (Home Assistant 2026.10 or older)
 
 1. Add this repository to HACS as a custom integration repository.
 2. Search for **HomeKit Child Bridge** and install version **0.4.2**.
 3. Restart Home Assistant.
 
-#### Manual installation
+### Option 3: Manual installation
 
 1. Copy `custom_components/homekit_child_bridge` into Home Assistant's
    `custom_components` directory.
 2. Restart Home Assistant.
 
-### Configuration
+## ⚙️ Configuration
 
 1. Go to **Settings → Devices & services → Add integration** and search for
    **HomeKit Child Bridge**.
@@ -86,7 +105,7 @@ belong to one instance.
 > Do not configure the same entities in multiple HomeKit bridges. Apple Home will
 > display them as duplicates.
 
-### Supported languages
+## 🌐 Supported languages
 
 Version 0.4.2 includes configuration UI translations for:
 
@@ -113,6 +132,6 @@ Pull requests and pushes are checked by the same `ci.yaml` and `validate.yaml`
 workflows used by Battery Devices Monitor. They run Ruff, pytest, hassfest, and
 HACS validation; validation is also scheduled daily.
 
-## License
+## 📜 License
 
 MIT
