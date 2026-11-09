@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.2] - 2026-11-09
+
+### Changed
+- Added the other-ecosystems category used by the Home Assistant 2026.11 Marketplace.
+- Removed obsolete HACS metadata.
+
 ## [0.4.1] - 2026-11-04
 
 ### Fixed

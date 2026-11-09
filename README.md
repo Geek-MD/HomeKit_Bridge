@@ -8,11 +8,12 @@ A custom Home Assistant integration that publishes groups of entities as separat
 Apple Home bridges. Each entry creates a native `homekit` entry, so Home Assistant
 provides an independent QR code and pairing code for every group.
 
-## Version 0.4.1
+## Version 0.4.2
 
-This README documents **HomeKit Child Bridge 0.4.1**. This release combines the
-domain/integration selector and entity-group choice into one dialog for both
-initial configuration and reconfiguration.
+This README documents **HomeKit Child Bridge 0.4.2**. This release adds the
+classification metadata used by the Home Assistant 2026.11 Marketplace. It also
+includes the combined domain/integration selector and entity-group choice added
+in 0.4.1.
 
 ### Requirements
 
@@ -41,7 +42,7 @@ This integration replaces the need to configure groups directly through the base
 integration uses Home Assistant's native HAP implementation internally to retain
 compatibility with Home Assistant and Apple Home.
 
-See the [0.4.1 changelog](CHANGELOG.md#041---2026-11-04) for the complete release
+See the [0.4.2 changelog](CHANGELOG.md#042---2026-11-09) for the complete release
 notes.
 
 ### Installation
@@ -49,7 +50,7 @@ notes.
 #### HACS
 
 1. Add this repository to HACS as a custom integration repository.
-2. Search for **HomeKit Child Bridge** and install version **0.4.1**.
+2. Search for **HomeKit Child Bridge** and install version **0.4.2**.
 3. Restart Home Assistant.
 
 #### Manual installation
@@ -87,7 +88,7 @@ belong to one instance.
 
 ### Supported languages
 
-Version 0.4.1 includes configuration UI translations for:
+Version 0.4.2 includes configuration UI translations for:
 
 - English
 - French
@@ -96,7 +97,7 @@ Version 0.4.1 includes configuration UI translations for:
 - Portuguese
 - Spanish
 
-## Development for 0.4.1
+## Development for 0.4.2
 
 ```bash
 python -m pip install -e '.[test]'
@@ -106,7 +107,7 @@ ruff check .
 
 The integration version is defined in
 `custom_components/homekit_child_bridge/manifest.json`. Any behavior added after
-0.4.1 must be documented in the changelog for its corresponding release.
+Changes for 0.4.2 must be documented in the changelog for its corresponding release.
 
 Pull requests and pushes are checked by the same `ci.yaml` and `validate.yaml`
 workflows used by Battery Devices Monitor. They run Ruff, pytest, hassfest, and
